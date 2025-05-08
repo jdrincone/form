@@ -194,6 +194,12 @@ if submit_button:
                         )
                         st.session_state["formulario_enviado"] = True
                         st.rerun()
+                        import subprocess
+
+                        subprocess.run(["git", "add", "produccion_v2.db"])
+                        subprocess.run(["git", "commit", "-m", f"add orden {orden_produccion}"])
+                        subprocess.run(["git", "push"])
+
 
                 else:
                     insert_stmt = produccion_table.insert().values(
